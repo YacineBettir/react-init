@@ -1,0 +1,85 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.pyc
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+
+# ---- Virtual environments ----
+venv/
+.env/
+.env.bak/
+.venv/
+ENV/
+env/
+env.bak/
+
+# ---- IDE / Editor files ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- Logs ----
+*.log
+*.out
+*.pid
+
+# ---- OS generated ----
+.DS_Store
+Thumbs.db
+
+# ---- Migrations (optional) ----
+# Uncomment if you don’t want to commit migrations
+# */migrations/
+
+# ---- Coverage / Testing ----
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+
+# ---- Build artifacts ----
+build/
+dist/
+*.manifest
+*.spec
+
+# ---- Local settings ----
+*.local
+*.envrc
+*.env
+
+# ---- SQLite DB ----
+*.sqlite3
+db.sqlite3
+
+# ---- Media / Static (optional) ----
+media/
+staticfiles/
+static/
+node_modules/
+
+# ---- npm / yarn ----
+package-lock.json
+yarn.lock
+
+# ---- Docker ----
+*.pid
+*.seed
+.dockerignore
+docker-compose.override.yml
+
+# ---- PyCharm ----
+*.iml
+out/
+
