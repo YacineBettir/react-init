@@ -1,7 +1,13 @@
 import { useForm } from "react-hook-form";
-import type {SubmitHandler} from "react-hook-form"
+import type { SubmitHandler } from "react-hook-form";
 import { Card, CardContent } from "@/components/ui/card";
-import { Field, FieldGroup, FieldLabel, FieldSeparator, FieldDescription } from "@/components/ui/field";
+import {
+  Field,
+  FieldGroup,
+  FieldLabel,
+  FieldSeparator,
+  FieldDescription,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,8 +21,17 @@ interface LoginFormProps extends React.ComponentProps<"div"> {
   onSubmit: SubmitHandler<Inputs>;
 }
 
-export function LoginForm({ className, onSubmit, ...props }: LoginFormProps) {
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+export function LoginForm({
+  className,
+  onSubmit,
+  apiError,
+  ...props
+}: LoginFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -32,26 +47,36 @@ export function LoginForm({ className, onSubmit, ...props }: LoginFormProps) {
                   id="identifier"
                   placeholder="m@example.com"
                   {...register("identifier", { required: true })}
+                  autoComplete="username"
                 />
-                {errors.identifier && <span className="text-red-500">This field is required</span>}
+                {errors.identifier && (
+                  <span className="text-red-500">This field is required</span>
+                )}
               </Field>
 
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
+                  <a
+                    href="#"
+                    className="ml-auto text-sm underline-offset-4 hover:underline"
+                  >
                     Forgot your password?
                   </a>
                 </div>
                 <Input
                   id="password"
+                  autoComplete="current-password"
                   type="password"
                   {...register("password", { required: true })}
                 />
-                {errors.password && <span className="text-red-500">This field is required</span>}
+                {errors.password && (
+                  <span className="block text-red-500">This field is required</span>
+                )}
               </Field>
 
               <Field>
+                {apiError && <div className="text-red-600 ">{apiError}</div>}
                 <Button type="submit">Login</Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <a href="#">Sign up</a>
@@ -63,9 +88,9 @@ export function LoginForm({ className, onSubmit, ...props }: LoginFormProps) {
       </Card>
 
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
+        and <a href="#">Privacy Policy</a>.
       </FieldDescription>
     </div>
   );
 }
-

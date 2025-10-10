@@ -1,20 +1,25 @@
 import { handleLogin } from "@/features/auth/services/api";
 import { LoginForm } from "@/components/login-form";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const handleLoginSubmit: SubmitHandler<Inputs> = async (data) => {
-  try {
-    const user = await handleLogin(data);
-    console.log("Logged in user:", user);
-  } catch (err: any) {
-    console.error("Login error:", err.message);
-  }
-};
 export const LoginPage = () => {
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null); // state for error
+
+  const handleLoginSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const user = await handleLogin(data);
+
+      navigate("/dashboard");
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    }
+  };
   return (
     <>
       <div className="flex justify-center items-center h-screen w-screen bg-gray-100">
-        <LoginForm onSubmit={handleLoginSubmit} />
+        <LoginForm onSubmit={handleLoginSubmit} apiError={error} />
       </div>
     </>
   );

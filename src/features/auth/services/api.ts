@@ -8,12 +8,11 @@ interface LoginCredentials {
 export const handleLogin = async (credentials: LoginCredentials) => {
   try {
     const res = await axiosClient.post("/users/login", credentials);
-    return res.data; 
+    return res.data;
   } catch (err: any) {
-    if (err.response?.data?.message) {
-      throw new Error(err.response.data.message);
+    if (err.response?.data?.detail) {
+      throw new Error(err.response.data.detail);
     }
-    throw new Error(err.message || "Login failed");
+    throw new Error(err || "Login failed");
   }
 };
-
