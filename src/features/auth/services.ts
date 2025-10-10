@@ -1,4 +1,4 @@
-import axiosClient from "../../apis/axios";
+import axiosClient from "@/apis/axios";
 import { LoginCredentials } from "./types";
 
 export async function loginService(payload: LoginCredentials) {

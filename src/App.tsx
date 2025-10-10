@@ -1,17 +1,18 @@
-import { useState } from "react";
-import HelloWorld from "./componants/HelloWorld";
+import { AuthProvider } from "@/features/auth/context/AuthContext";
 import "./App.css";
-import LoginForm from "./features/auth/componants/LoginPannel";
+import { LoginPage } from "@/pages/LoginPage";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-    const [count, setCount] = useState(0);
-
-    return (
-        <>
-            {/* <HelloWorld /> */}
-            <LoginForm />
-        </>
-    );
+  return (
+    <>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App;
